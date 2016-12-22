@@ -1,0 +1,102 @@
+<html style="background-color: #0a0f14">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Mixmax &middot; Giphy</title>
+
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+        
+    <!-- Mixmax SDK -->
+  <script defer src="https://d1xa36cy0xt122.cloudfront.net/v1/Mixmax.js"></script>
+  <link rel="stylesheet" href="/styles.css">
+  <link href='//fonts.googleapis.com/css?family=Merriweather:400,700,400italic,700italic,900,900italic,300italic,300' rel='stylesheet' type='text/css'>
+    <style>
+      #map {
+        height: 100%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+    </style>
+</head>
+
+<body data-current-theme="gmail">
+
+    <div id="floating-panel">
+<!--        <form class="search" id="myForm">-->
+          <input class="search-field" id="start" autofocus  type="text" placeholder="Origin" value=""/>
+            <input class="search-field"  id="end"  type="text" placeholder="Destination" value=""/>
+          <button type="submit" class="btn btn-primary" value="Search" onclick="getDir()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</button>
+            <button class="btn btn-primary" value="Search" onclick="done()" style="display:none" id="ok"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Click OK to proceed</button>
+<!--    </form>-->
+    </div>
+    <div id="map"></div>
+    <script>
+        
+    var directionsService;
+    var directionsDisplay;
+    var map;
+        
+    //function called with page load, it sets the map with LA as the center. Also declares and sets up the Google directions service and display objects
+      function initMap() {
+        directionsService = new google.maps.DirectionsService;
+        directionsDisplay = new google.maps.DirectionsRenderer;
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: {lat: 34.05, lng: -118.24}
+        });
+        directionsDisplay.setMap(map);
+      }
+
+    //onclick of the Search button. It calls the Google Directions service and renders the map
+    function getDir(){
+            console.log("SUBMIT");
+            calculateAndDisplayRoute(directionsService, directionsDisplay);
+            document.getElementById('ok').style.display = 'inline';
+        }
+        
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        directionsService.route({
+          origin: document.getElementById('start').value,
+          destination: document.getElementById('end').value,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+            console.log("Directions display done");
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+        
+    //calls Mixmax done when the user clicks on OK to proceed button
+    function done(){      
+        Mixmax.done({
+            src: document.getElementById('map').innerHTML,
+            origin: document.getElementById('start').value,
+            dest: document.getElementById('end').value
+          });
+    }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDiiqZ3OahniwmxTJuGeAl6Bbt2caoQgU&callback=initMap">
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "get-directions-enhancement",
+  "version": "1.0.0",
+  "description": "Mixmax enhancement to get Google Map directions",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShobhaRaniD/MixMax_Enhancement.git"
+  },
+  "author": "ShobhaRaniD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShobhaRaniD/MixMax_Enhancement/issues"
+  },
+  "homepage": "https://github.com/ShobhaRaniD/MixMax_Enhancement#readme"
+}
