@@ -1,6 +1,7 @@
 # MixMax_Enhancement
 Enchancement to get Google directions from Origin to Destination, based on user inputs.
-When you click on the map added onto the mixmax compose window, it redirects to the Google map drections page.
+Once user clicks on "Search", the directions map is shown. And then "Click OK to proceed" to add the map to the message.
+The map object inserted to the message is clickable, and redirects to the Google map drections page.
 
 Git clone
 Run "npm install"
