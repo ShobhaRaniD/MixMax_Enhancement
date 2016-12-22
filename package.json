@@ -16,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/ShobhaRaniD/MixMax_Enhancement/issues"
   },
-  "homepage": "https://github.com/ShobhaRaniD/MixMax_Enhancement#readme"
+  "homepage": "https://github.com/ShobhaRaniD/MixMax_Enhancement#readme",
+    "dependencies": {
+    "body-parser": "^1.12.2",
+    "cors": "^2.7.1",
+    "express": "^4.12.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.7.1"
+  }
 }

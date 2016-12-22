@@ -1,16 +1,16 @@
-var fs = require('fs');
-var https = require('https');
+//var fs = require('fs');
+//var https = require('https');
 
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var cors = require('cors');
 
-//SSL certificate and key for HTTPS of nodejs. Used for local testing only
-var options = {
-   key  : fs.readFileSync('server.key'),
-   cert : fs.readFileSync('server.cert')
-};
+////SSL certificate and key for HTTPS of nodejs. Used for local testing only
+//var options = {
+//   key  : fs.readFileSync('server.key'),
+//   cert : fs.readFileSync('server.cert')
+//};
 
 // Serve assets in /public.
 app.use(express.static(__dirname + '/public'));
@@ -34,6 +34,8 @@ app.get('/editor', function(req, res) {
 // The in-email representation.
 app.post('/api/resolver', cors(corsOptions), require('./api/resolver'));
 
-https.createServer(options, app).listen(8910, function () {
-   console.log('Started!');
-});
+//https.createServer(options, app).listen(8910, function () {
+//   console.log('Started!');
+//});
+
+app.listen(process.env.PORT || 8910);
